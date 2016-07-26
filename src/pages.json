@@ -1,5 +1,5 @@
 {
-  "index.html": {
+  "pages/index.html": {
     "title": "Homepage",
     "layout": "basic.swig",
     "contents": "<p>In euismod eleifend nunc ac pretium...</p>"
