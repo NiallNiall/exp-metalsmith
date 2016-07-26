@@ -1,0 +1,12 @@
+{
+  "index.html": {
+    "title": "Homepage",
+    "layout": "basic.swig",
+    "contents": "<p>In euismod eleifend nunc ac pretium...</p>"
+  },
+  "contact.html": {
+    "title": "Contact",
+    "layout": "basic.swig",
+    "contents": "<p>Lorem ipsum dolor sit amet...</p>"
+  }
+}
