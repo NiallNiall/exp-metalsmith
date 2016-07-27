@@ -3,19 +3,20 @@ var gulp = require('gulp');
     connect = require('connect'),
     serveStatic = require('serve-static'),
     connectLivereload = require('connect-livereload'),
-    gulpLivereload = require('gulp-livereload');
+    gulpLivereload = require('gulp-livereload'),
+    sass = require('gulp-sass'),
+    prefix = require('gulp-autoprefixer');
 
 var	metalsmith = require('gulp-metalsmith'),
-	layouts = require('metalsmith-layouts');
+    layouts = require('metalsmith-layouts');
 
 gulp.task('metalsmith', function() {
-  return gulp.src('src/**')
+  return gulp.src('content/**')
     .pipe(metalsmith({
         use: [layouts({engine: 'swig'})],
         json: true
-    }
-
-        ))
+        }
+    ))
     .pipe(gulp.dest('build'));
 });
 
@@ -35,5 +36,23 @@ gulp.task('server', function(){
   console.log("\nlocal server running at http://localhost:" + localPort + "/\n");
 });
 
+gulp.task('sass', function(){
+  gulp.src('sass/**/*.scss')
+    .pipe(sass({
+      outputStyle: [ 'expanded' ],
+      sourceComments: 'normal'
+    }).on('error', sass.logError))
+    .pipe(prefix())
+    .pipe(gulp.dest('build/css'))
+    .pipe(gulpLivereload());
+})
 
-gulp.task('default', ['server', 'metalsmith']);
+gulp.task('watch', function(){
+  gulp.watch(['layouts/**', 'content/**'], ['metalsmith']);
+  gulp.watch('sass/**/*.scss', ['sass']);
+
+  gulpLivereload.listen();
+})
+
+
+gulp.task('default', ['server', 'watch']);

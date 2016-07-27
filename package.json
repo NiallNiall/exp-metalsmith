@@ -17,6 +17,7 @@
     "gulp-livereload": "^3.8.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
+    "gulp-autoprefixer": "^3.1.0",
     "gulp-uglify": "^1.5.4",
     "jshint": "^2.9.2",
     "gulp-metalsmith": "^1.0.0",

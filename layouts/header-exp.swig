@@ -1,3 +1,3 @@
 {% extends 'header-base.swig' %}
 
-{% block title %}My Page{% endblock %}
+{% block title %}JS Experiments - {{ title }}{% endblock %}
