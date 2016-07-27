@@ -1,7 +1,7 @@
 {
-  "pages/index.html": {
+  "index.html": {
     "title": "Homepage",
-    "layout": "basic.swig",
+    "layout": "exp-js.swig",
     "contents": "<p>In euismod eleifend nunc ac pretium...</p>"
   },
   "contact.html": {

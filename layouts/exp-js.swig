@@ -1,11 +1,8 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>{{ title }} &ndash; Foo Solutions</title>
-</head>
+{% include 'header-exp.swig' %}
 <body>
-<h1>Foo Solutions</h1>
+<h1>{{title}}</h1>
 <div>{{ contents | safe }}</div>
 </body>
 </html>
