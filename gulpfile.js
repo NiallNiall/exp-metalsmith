@@ -8,12 +8,20 @@ var gulp = require('gulp');
     prefix = require('gulp-autoprefixer');
 
 var	metalsmith = require('gulp-metalsmith'),
-    layouts = require('metalsmith-layouts');
+    layouts = require('metalsmith-layouts'),
+    metadata = require('metalsmith-metadata');
+
+
+var testplugin = function(files, metalsmith, done) {
+    console.log(files);
+    done();
+};
+
 
 gulp.task('metalsmith', function() {
   return gulp.src('content/**')
     .pipe(metalsmith({
-        use: [layouts({engine: 'swig'})],
+        use: [layouts({engine: 'swig'}), testplugin],
         json: true
         }
     ))
@@ -23,6 +31,7 @@ gulp.task('metalsmith', function() {
 // Set up ports
 var localPort = 4000,
        lrPort = 35729;
+
 
 
 // Function to set up Server
@@ -50,7 +59,6 @@ gulp.task('sass', function(){
 gulp.task('watch', function(){
   gulp.watch(['layouts/**', 'content/**'], ['metalsmith']);
   gulp.watch('sass/**/*.scss', ['sass']);
-
   gulpLivereload.listen();
 })
 
