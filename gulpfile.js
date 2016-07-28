@@ -13,7 +13,12 @@ var	metalsmith = require('gulp-metalsmith'),
 
 
 var testplugin = function(files, metalsmith, done) {
-    console.log(files);
+    // console.log(files);
+
+    for(var key in files) {
+          console.log(files[key].title);
+        }
+
     done();
 };
 
