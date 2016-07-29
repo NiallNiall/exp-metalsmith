@@ -12,7 +12,15 @@
     </p>
   </header>
   <h1>{{ title }}</h1>
+  <h1>{{ path }}</h1>
   <p>{{ description }}</p>
+
+  <!-- {{collections.articles}} -->
+
+        {{#each collections.articles}}
+          {{this.title}}
+          <!-- <span><a href='../../tags/{{this}}/'>{{this}}</a></span> -->
+        {{/each}}
 
   {{{ contents }}}
 

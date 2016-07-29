@@ -2,6 +2,7 @@ var Metalsmith  = require('metalsmith');
 var markdown    = require('metalsmith-markdown');
 var layouts     = require('metalsmith-layouts');
 var permalinks  = require('metalsmith-permalinks');
+var collections = require('metalsmith-collections');
 
 Metalsmith(__dirname)
   .metadata({
@@ -11,6 +12,13 @@ Metalsmith(__dirname)
     url: "http://www.metalsmith.io/"
   })
   .source('./src')
+  .use(collections({
+    articles: {
+      pattern: '*.md',
+      sortBy: 'date',
+      reverse: true
+    }
+  }))
   .destination('./build')
   .clean(false)
   .use(markdown())
