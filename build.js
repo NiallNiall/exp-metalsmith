@@ -3,6 +3,8 @@ var markdown    = require('metalsmith-markdown');
 var layouts     = require('metalsmith-layouts');
 var permalinks  = require('metalsmith-permalinks');
 var collections = require('metalsmith-collections');
+var serve = require('metalsmith-serve');
+var watch = require('metalsmith-watch');
 
 Metalsmith(__dirname)
   .metadata({
@@ -16,7 +18,7 @@ Metalsmith(__dirname)
     articles: {
       pattern: '*.md',
       sortBy: 'date',
-      reverse: true
+      reverse: false
     }
   }))
   .destination('./build')
@@ -26,6 +28,17 @@ Metalsmith(__dirname)
   .use(layouts({
     engine: 'handlebars'
   }))
+  .use(serve())
+  .use(
+    watch({
+      paths: {
+        "${source}/**/*": true,
+        "templates/**/*": "**/*.md",
+        "layouts/**/*": "**/*.md",
+      },
+      livereload: true,
+    })
+  )
   .build(function(err, files) {
     if (err) { throw err; }
   });

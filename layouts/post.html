@@ -11,6 +11,18 @@
       <a href="/">Home</a>
     </p>
 
+      {{#if this.next.path }}
+          <a href="/{{this.next.path }}">Next: {{ this.next.title }}</a>
+      {{/if}}
+
+      {{#if this.previous.path}}
+          <a href="/{{this.previous.path }}">Previous: {{ this.previous.title }}</a>
+      {{/if}}
+
+      <!-- {{#each collections.articles}}
+          {{this.title}}
+      {{/each}} -->
+
   </header>
   <h1>{{ title }}</h1>
   <time>{{ date }}</time>
