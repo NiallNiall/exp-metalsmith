@@ -6,6 +6,8 @@ var collections = require('metalsmith-collections');
 var serve = require('metalsmith-serve');
 var watch = require('metalsmith-watch');
 
+var sass = require('metalsmith-sass');
+
 Metalsmith(__dirname)
   .metadata({
     title: "My Static Site & Blog",
@@ -23,6 +25,10 @@ Metalsmith(__dirname)
   }))
   .destination('./build')
   .clean(false)
+  .use(sass({
+    outputStyle: "expanded",
+    outputDir: 'css/'
+  }))
   .use(markdown())
   .use(permalinks())
   .use(layouts({
