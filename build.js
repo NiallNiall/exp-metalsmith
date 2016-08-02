@@ -32,7 +32,10 @@ Metalsmith(__dirname)
   .use(markdown())
   .use(permalinks())
   .use(layouts({
-    engine: 'handlebars'
+    engine: 'handlebars',
+    "partials": {
+      "header": "partials/header"
+    }
   }))
   .use(serve())
   .use(
