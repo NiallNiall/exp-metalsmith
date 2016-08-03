@@ -6,6 +6,7 @@ var collections = require('metalsmith-collections');
 var serve = require('metalsmith-serve');
 var watch = require('metalsmith-watch');
 
+
 var sass = require('metalsmith-sass');
 
 Metalsmith(__dirname)
@@ -18,6 +19,11 @@ Metalsmith(__dirname)
   .source('./src')
   .use(collections({
     articles: {
+      pattern: '*.md',
+      sortBy: 'date',
+      reverse: false
+    },
+       experiments: {
       pattern: '*.md',
       sortBy: 'date',
       reverse: false
@@ -34,7 +40,8 @@ Metalsmith(__dirname)
   .use(layouts({
     engine: 'handlebars',
     "partials": {
-      "header": "partials/header"
+      "header": "partials/header",
+      "head": "partials/head"
     }
   }))
   .use(serve())
